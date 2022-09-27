@@ -1,10 +1,10 @@
 /*
  * @Author      : Chinge Yang
  * @Date        : 2022-09-08 16:29:51
- * @LastEditTime: 2022-09-08 16:36:51
+ * @LastEditTime: 2022-09-16 16:00:31
  * @LastEditors : Chinge Yang
  * @Description : 登录验证的中间件
- * @FilePath    : /my-message-board/src/middleware/loginCheck.js
+ * @FilePath    : /my-mall-backend/src/middleware/loginCheck.js
  */
 
 async function loginCheck(ctx, next) {

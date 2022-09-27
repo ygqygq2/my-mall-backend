@@ -1,11 +1,12 @@
 const router = require("koa-router")();
+const errNo = require("../../config/errno.ts");
 const {login, register} = require("../controller/user");
 const loginCheck = require("../middleware/loginCheck");
 
-router.prefix("/users");
+router.prefix("/api/user");
 
 // 获取用户信息
-router.get("/getUserInfo", loginCheck, async (ctx, next) => {
+router.get("/getUserInfo", loginCheck, async (ctx, _next) => {
     ctx.body = {
         errno: 0,
         data: ctx.session.userInfo
@@ -13,7 +14,7 @@ router.get("/getUserInfo", loginCheck, async (ctx, next) => {
 });
 
 // 登录
-router.post("/login", async (ctx, next) => {
+router.post("/login", async (ctx, _next) => {
     // 获取请求参数
     const { username, password } = ctx.request.body;
     // 验证登录
@@ -32,11 +33,11 @@ router.post("/login", async (ctx, next) => {
             errno: -1,
             message: "登录失败"
         };
-    }
+    }0
 });
 
 // 用户注册
-router.post("/register", async (ctx, next) => {
+router.post("/register", async (ctx, _next) => {
     // 获取请求中的用户信息
     const userInfo = ctx.request.body;
     // 调用注册方法
@@ -49,11 +50,11 @@ router.post("/register", async (ctx, next) => {
         };
     } catch (ex) {
         // 注册失败
-        console.error("注册失败", ex);
         ctx.body = {
-            errno: -1,
-            message: "注册失败"
+            errno: 10001,
+            message: `${errNo[10001]} - ${ex.message}`
         };
+        console.error(errNo[10001], ex);
     }
 });
 

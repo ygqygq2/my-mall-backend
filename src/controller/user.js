@@ -1,18 +1,23 @@
 /*
  * @Author      : Chinge Yang
  * @Date        : 2022-09-08 14:53:07
- * @LastEditTime: 2022-09-08 15:14:56
+ * @LastEditTime: 2022-09-27 16:34:35
  * @LastEditors : Chinge Yang
  * @Description : user contoller
- * @FilePath    : /my-message-board/src/controller/user.js
+ * @FilePath    : /my-mall-backend/src/controller/user.js
  */
 
 const User = require("../model/User");
 
-// 登录
+/** 登录
+ * @description : 
+ * @param        {*} username
+ * @param        {*} password
+ * @return       {boolean}
+ */
 async function login(username, password) {
     // 查询用户是否存在
-    const user = await User.findOne({ username });
+    const user = await User.findOne({username});
     if (!user) {
         // 用户不存在
         throw new Error("用户不存在");
@@ -26,7 +31,11 @@ async function login(username, password) {
     return true;
 }
 
-// 注册
+/**
+ * @description : 注册
+ * @param        {{username, password}} userInfo
+ * @return       {*}
+ */
 async function register(userInfo = {}) {
     // 插入数据库
     const newUser = await User.create(userInfo);
@@ -34,4 +43,4 @@ async function register(userInfo = {}) {
     return newUser;
 }
 
-module.exports = { login, register };
+module.exports = {login, register};
