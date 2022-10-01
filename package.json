@@ -6,7 +6,8 @@
     "start": "node bin/www",
     "dev": "./node_modules/.bin/nodemon bin/www",
     "prd": "pm2 start bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "plop": "plop"
   },
   "dependencies": {
     "debug": "^4.1.1",
@@ -27,13 +28,14 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "eslint": "^8.0.1",
+    "eslint": "^8.23.0",
     "eslint-config-standard-with-typescript": "^22.0.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "nodemon": "^1.19.1",
+    "plop": "^3.1.1",
     "typescript": "*"
   }
 }

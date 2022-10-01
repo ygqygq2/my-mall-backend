@@ -10,15 +10,18 @@ const cors = require("koa2-cors");
 
 const index = require("./routes/index");
 const users = require("./routes/users");
+const address = require("./routes/address");
 
 // error handler
 onerror(app);
 
 // 服务端支持跨域
-app.use(cors({
-    origin: 'http://localhost:8080',  // 允许跨域的域名
-    credentials: true,  // 允许跨域携带cookie
-}));
+app.use(
+    cors({
+        origin: "http://localhost:8080", // 允许跨域的域名
+        credentials: true // 允许跨域携带cookie
+    })
+);
 
 // middlewares
 app.use(
@@ -59,6 +62,7 @@ app.use(
 // routes
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
+app.use(address.routes(), address.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {

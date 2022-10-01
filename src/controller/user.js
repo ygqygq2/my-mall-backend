@@ -1,7 +1,7 @@
 /*
  * @Author      : Chinge Yang
  * @Date        : 2022-09-08 14:53:07
- * @LastEditTime: 2022-09-27 16:34:35
+ * @LastEditTime: 2022-09-29 10:11:06
  * @LastEditors : Chinge Yang
  * @Description : user contoller
  * @FilePath    : /my-mall-backend/src/controller/user.js
@@ -9,26 +9,27 @@
 
 const User = require("../model/User");
 
-/** 登录
- * @description : 
+/*
+ * @description : 登录
  * @param        {*} username
  * @param        {*} password
  * @return       {boolean}
  */
 async function login(username, password) {
     // 查询用户是否存在
-    const user = await User.findOne({username});
+    const user = await User.findOne({ username });
+    const uid = (user["_id"].toString());
     if (!user) {
         // 用户不存在
-        throw new Error("用户不存在");
+        return false;
     }
     // 用户存在，验证密码是否正确
     if (password !== user.password) {
         // 密码错误
-        throw new Error("密码错误");
+        return false;
     }
-    // 登录成功
-    return true;
+    // 登录成功，返回 uid
+    return uid;
 }
 
 /**
@@ -43,4 +44,4 @@ async function register(userInfo = {}) {
     return newUser;
 }
 
-module.exports = {login, register};
+module.exports = { login, register };

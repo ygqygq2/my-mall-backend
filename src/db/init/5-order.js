@@ -48,7 +48,7 @@ const Product = require('../../model/Product');
     });
 
     const order = await Order.create({
-        uid: "6328377995a23751647227e8",
+        username: "6328377995a23751647227e8",
         shopId: requestBody.shopId,
         shopName: requestBody.shopName,
         isCanceled: requestBody.isCanceled,

@@ -5,7 +5,7 @@
 
 ```js
 {
-    _id: 1,
+    _id: "1",
     username: "13700000000",
     password: "123"
 }
@@ -15,8 +15,8 @@
 
 ```js
 {
-    _id: 1,
-    uid: 1,  // 对应用户的id
+    _id: "1",
+    username: "13700000000",  // 对应用户的id
     city: '北京',
     hourse: '北理工大学国防科技园',
     floor: '2号楼13层',
@@ -29,7 +29,7 @@
 
 ```js
 {
-    _id: 1,
+    _id: "1",
     name: '沃尔玛',
     imgUrl: 'http://www.dell-lee.com/imgs/vue3/near.png',
     sales: 10000,
@@ -43,8 +43,8 @@
 
 ```js
 {
-    _id: 1,
-    shopId: 1,  // 对应的商店 id
+    _id: "1",
+    shopId: "1",  // 对应的商店 id
     name: '橙子250g/份',
     imgUrl: 'http://www.dell-lee.com/imgs/vue3/orange.png',
     sales: 110,
@@ -58,13 +58,13 @@
 
 ```js
 {
-    _id: 1,
-    uid: 1,  // 对应用户的id
-    shopId: 1,  // 对应的商店 id
+    _id: "1",
+    username: "13700000000",  // 对应用户的id
+    shopId: "1",  // 对应的商店 id
     shopName: '沃尔玛',
     isCancel: false,  // 订单是否被取消
     address: {
-        uid: 1,  // 对应用户的id
+        username: "13700000000",  // 对应用户的id
         city: '北京',
         hourse: '北理工大学国防科技园',
         floor: '2号楼13层',
@@ -73,7 +73,7 @@
     },
     products: [
         {
-            shopId: 1,  // 对应的商店 id
+            shopId: "1",  // 对应的商店 id
             name: '橙子250g/份',
             imgUrl: 'http://www.dell-lee.com/imgs/vue3/orange.png',
             sales: 110,
@@ -82,7 +82,7 @@
             tabs: ['all', 'fruit']
         },
         {
-            shopId: 1,  // 对应的商店 id
+            shopId: "1",  // 对应的商店 id
             name: '车厘子500g/份',
             imgUrl: 'http: //www.dell-lee.com/imgs/vue3/cherry.png',
             sales: 10,
