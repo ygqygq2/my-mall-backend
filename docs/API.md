@@ -1,13 +1,3 @@
 # API 设计
 
-## 注册
-
-url: `/api/register`    
-method: `POST`    
-request body::
-```json
-{
-    "username": "username",
-    "password": "password"
-}
-```
+详见 APIFOX：https://fmfq3hf8z6.apifox.cn/api-40294945
