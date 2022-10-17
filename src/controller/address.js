@@ -1,7 +1,7 @@
 /*
  * @Author      : Chinge Yang
  * @Date        : 2022-09-28 16:14:05
- * @LastEditTime: 2022-09-29 15:48:05
+ * @LastEditTime: 2022-10-13 16:42:35
  * @LastEditors : Chinge Yang
  * @Description : address controller
  * @FilePath    : /my-mall-backend/src/controller/address.js
@@ -38,7 +38,13 @@ async function getAddressList(username) {
  * @return       {object}
  */
 async function getAddressById(id) {
-    const address = await Address.findById(id);
+    // 第一次获取单个地址时，由于不知道id，使用findOne查询一个地址
+    let address;
+    if (id.toString() === "1") {
+        address = await Address.findOne();
+    } else {
+        address = await Address.findById(id);
+    }
     return address;
 }
 
@@ -51,9 +57,9 @@ async function getAddressById(id) {
  */
 async function updateAddress(id, username, data) {
     const address = await Address.findOneAndUpdate(
-        {_id: id, username},  // 查询条件
-        {username, ...data},  // 更新内容
-        {new: true}         // 返回更新后的数据
+        { _id: id, username }, // 查询条件
+        { username, ...data }, // 更新内容
+        { new: true } // 返回更新后的数据
     );
     return address;
 }

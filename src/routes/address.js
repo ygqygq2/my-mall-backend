@@ -1,7 +1,7 @@
 /*
  * @Author      : Chinge Yang
  * @Date        : 2022-09-28 16:13:20
- * @LastEditTime: 2022-09-29 16:28:33
+ * @LastEditTime: 2022-10-13 16:46:45
  * @LastEditors : Chinge Yang
  * @Description : address router
  * @FilePath    : /my-mall-backend/src/routes/address.js
@@ -41,15 +41,19 @@ router.get("/", loginCheck, async function (ctx, next) {
     const username = getUserInfo(ctx, next);
 
     const list = await getAddressList(username);
-    console.log(list);
     ctx.body = new SuccessModel(list);
 });
 
 // 获取单个收货地址
 router.get("/:id", loginCheck, async function (ctx, next) {
     const id = ctx.params.id;
-    const address = await getAddressById(id);
-    ctx.body = new SuccessModel(address);
+    try {
+        const address = await getAddressById(id);
+        ctx.body = new SuccessModel(address);
+    } catch (ex) {
+        console.error(ex);
+        ctx.body = new ErrorModel(10006, errNo[10006]);
+    }
 });
 
 // 更新收货地址

@@ -5,17 +5,17 @@ const Product = require('../../model/Product');
 !(async () => {
     // 创建订单
     const requestBody = {
-        addressId: "63314bba76abd7e29902e7f7",  // 对应的地址 id
-        shopId: "633259321fea5f9c28a0131f",  // 对应的商店 id
+        addressId: "63314bba76abd7e29902e7f7", // 对应的地址 id
+        shopId: "63468b8f3abeea941a407e34", // 对应的商店 id
         shopName: "沃尔玛",
         isCanceled: false,
         products: [
             {
-                id: "63326bcdbff7405373cbee62",  // 对应的商品 id
+                id: "6347708698f646b6293999c1", // 对应的商品 id
                 num: 3
             }
         ]
-    }
+    };
 
     // 获取地址信息
     const address = await Address.findById(requestBody.addressId);
@@ -48,7 +48,7 @@ const Product = require('../../model/Product');
     });
 
     const order = await Order.create({
-        username: "6328377995a23751647227e8",
+        username: "jim",
         shopId: requestBody.shopId,
         shopName: requestBody.shopName,
         isCanceled: requestBody.isCanceled,

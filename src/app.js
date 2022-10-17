@@ -1,3 +1,4 @@
+const config = require("../config/index.ts");
 const Koa = require("koa");
 const app = new Koa();
 const views = require("koa-views");
@@ -6,11 +7,14 @@ const onerror = require("koa-onerror");
 const bodyparser = require("koa-bodyparser");
 const logger = require("koa-logger");
 const session = require("koa-generic-session");
+const redisStore = require("koa-redis");
 const cors = require("koa2-cors");
 
 const index = require("./routes/index");
 const users = require("./routes/users");
 const address = require("./routes/address");
+const shop = require("./routes/shop");
+const order = require("./routes/order");
 
 // error handler
 onerror(app);
@@ -48,14 +52,20 @@ app.use(async (ctx, next) => {
 });
 
 // session 配置
-app.keys = ["session-koa2"];
+app.keys = ["session-koa2", "keyskeys"];
 app.use(
     session({
         cookie: {
             path: "/", // cookie 在根目录下生效
             httpOnly: true, // cookie 只允许后端修改
             maxAge: 24 * 60 * 60 * 1000 // cookie 有效时长
-        }
+        },
+        store: redisStore({
+            db: config.redis.db,
+            host: config.redis.host,
+            port: config.redis.port,
+            password: config.redis.password
+        })
     })
 );
 
@@ -63,6 +73,8 @@ app.use(
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(address.routes(), address.allowedMethods());
+app.use(shop.routes(), shop.allowedMethods());
+app.use(order.routes(), order.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {

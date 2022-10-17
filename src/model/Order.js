@@ -1,7 +1,7 @@
 /*
  * @Author      : Chinge Yang
  * @Date        : 2022-09-14 10:41:16
- * @LastEditTime: 2022-09-27 11:32:28
+ * @LastEditTime: 2022-10-14 16:20:56
  * @LastEditors : Chinge Yang
  * @Description : Order model
  * @FilePath    : /my-mall-backend/src/model/Order.js
@@ -11,18 +11,24 @@ const mongoose = require("../db/db");
 
 const OrderSchema = mongoose.Schema(
     {
-        uid: {
+        username: {
             type: String,
-            required: true, // 必需
+            required: true // 必需
         },
-        shopId: String,
-        shopName: String,
+        shopId: {
+            type: String,
+            required: true // 必需
+        },
+        shopName: {
+            type: String,
+            required: true // 必需
+        },
         isCanceled: {
             type: Boolean,
             default: false
         },
         address: {
-            uid: String,
+            username: { type: String, required: true },
             city: String,
             hourse: String,
             floor: String,
@@ -32,12 +38,12 @@ const OrderSchema = mongoose.Schema(
         products: [
             {
                 product: {
-                    shopId: {type: String, required: true},
+                    shopId: { type: String, required: true },
                     name: String,
                     imgUrl: String,
                     sales: Number,
                     price: Number,
-                    oldPrice: {type: Number, default: 0},
+                    oldPrice: { type: Number, default: 0 },
                     tabs: [String]
                 },
                 orderSales: Number

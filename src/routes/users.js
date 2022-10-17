@@ -7,7 +7,7 @@ const loginCheck = require("../middleware/loginCheck");
 router.prefix("/api/user");
 
 // 获取用户信息
-router.get("/getUserInfo", loginCheck, async (ctx, next) => {
+router.get("/info", loginCheck, async (ctx, next) => {
     ctx.body = {
         errno: 0,
         data: ctx.session.userInfo
@@ -18,16 +18,16 @@ router.get("/getUserInfo", loginCheck, async (ctx, next) => {
 router.post("/login", async (ctx, next) => {
     // 获取请求参数
     const { username, password } = ctx.request.body;
-    // 验证登录
+    // 验证登录，获取到 uid
     const res = await login(username, password);
     // 登录成功，设置 session
     if (res) {
         // 设置 session
-        ctx.session.userInfo = { uid: res };
-        ctx.session.userInfo = { username };
+        const loginData = { uid: res, username };
+        ctx.session.userInfo = loginData;
 
         // 返回
-        ctx.body = new SuccessModel();
+        ctx.body = new SuccessModel(loginData);
     } else {
         ctx.body = new ErrorModel(10002, errNo[10002]);
     }
